@@ -2,10 +2,10 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 const galleryList = document.querySelector(".gallery");
-console.log("galleryList:", galleryList);
 const galleryListItems = createGalleryListHTML(galleryItems);
-console.log("galleryListItems:", galleryListItems);
+
 galleryList.insertAdjacentHTML("beforeend", galleryListItems);
+galleryList.addEventListener("click", onGalleryClick);
 
 function createGalleryListHTML(galleryItems) {
   return galleryItems
@@ -22,4 +22,11 @@ function createGalleryListHTML(galleryItems) {
 </li>`;
     })
     .join("");
+}
+
+function onGalleryClick(event) {
+  if (!event.target.classList.contains("gallery__link")) {
+    return;
+  }
+  console.log(event.target);
 }
