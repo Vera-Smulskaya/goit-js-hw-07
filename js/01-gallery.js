@@ -15,7 +15,7 @@ function createGalleryListHTML(galleryItems) {
     <img
       class="gallery__image"
       src="${preview}"
-      data-source="large-image.jpg"
+      data-source="${original}"
       alt="${description}"
     />
   </a>
@@ -28,5 +28,9 @@ function onGalleryClick(event) {
   if (!event.target.classList.contains("gallery__link")) {
     return;
   }
+  //   if (event.currentTarget === event.target) {
+  //     return;
+  // }
+
   console.log(event.target);
 }
