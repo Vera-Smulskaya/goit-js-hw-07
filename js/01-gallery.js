@@ -45,4 +45,6 @@ function onGalleryClick(event) {
       instance.close();
     }
   });
+
+  document.removeEventListener("keydown", () => instance.close());
 }

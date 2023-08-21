@@ -20,8 +20,14 @@ function createGalleryListHTML(galleryItems) {
 }
 
 function onGalleryClick(event) {
-  if (!event.target.classList.contains("gallery__link")) {
+  if (event.currentTarget === event.target) {
     return;
   }
-  console.log(event.target);
+  event.preventDefault();
+
+  new SimpleLightbox(".gallery a", {
+    captionsData: "alt",
+    captionPosition: "bottom",
+    captionDelay: 250,
+  });
 }
