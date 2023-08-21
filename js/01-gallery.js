@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-// import * as basicLightbox from "basiclightbox";
 
 const galleryList = document.querySelector(".gallery");
 const galleryListItems = createGalleryListHTML(galleryItems);
@@ -26,22 +25,24 @@ function createGalleryListHTML(galleryItems) {
 }
 
 function onGalleryClick(event) {
-  if (!event.target.classList.contains("gallery__link")) {
+  if (event.currentTarget === event.target) {
     return;
   }
-  //   if (event.currentTarget === event.target) {
-  //     return;
-  // }
+  event.preventDefault();
 
-  const currentListItem = event.target.closest(".gallery__item");
-  const imageUrl = currentListItem.dataset.original;
-  const image = galleryItems.find((item) => item.original === imageUrl);
+  const currentListItem = event.target;
+  const imageUrl = currentListItem.dataset.source;
+  const item = galleryItems.find((el) => el.original === imageUrl);
 
-  const modalInstance =
-    basicLightbox.create(`<div class="modal"><img class="gallery__image"
-      src="${image.preview}"
-      data-source="${image.original}"
-      alt="${image.description}" src="${image.original}"></div>`);
+  const instance = basicLightbox.create(`
+      <img class="gallery__image" src="${imageUrl}" width="800" height="600" alt="${item.description}">
+   `);
 
-  modalInstance.show();
+  instance.show();
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  });
 }
