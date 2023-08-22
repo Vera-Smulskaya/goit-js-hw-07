@@ -25,7 +25,7 @@ function createGalleryListHTML(galleryItems) {
 }
 
 function onGalleryClick(event) {
-  if (event.currentTarget === event.target) {
+  if (event.target.nodeName !== "IMG") {
     return;
   }
   event.preventDefault();
@@ -40,11 +40,12 @@ function onGalleryClick(event) {
 
   instance.show();
 
-  document.addEventListener("keydown", (event) => {
+  const closeModalonEscape = (event) => {
     if (event.key === "Escape") {
       instance.close();
+      document.removeEventListener("keydown", closeModalonEscape);
     }
-  });
+  };
 
-  document.removeEventListener("keydown", () => instance.close());
+  document.addEventListener("keydown", closeModalonEscape);
 }

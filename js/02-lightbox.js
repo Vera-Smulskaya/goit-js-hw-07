@@ -19,15 +19,8 @@ function createGalleryListHTML(galleryItems) {
     .join("");
 }
 
-function onGalleryClick(event) {
-  if (event.currentTarget === event.target) {
-    return;
-  }
-  event.preventDefault();
-
-  new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: 250,
-  });
-}
+new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+});
