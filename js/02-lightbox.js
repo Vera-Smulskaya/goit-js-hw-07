@@ -5,7 +5,6 @@ const galleryList = document.querySelector(".gallery");
 const galleryListItems = createGalleryListHTML(galleryItems);
 
 galleryList.insertAdjacentHTML("beforeend", galleryListItems);
-galleryList.addEventListener("click", onGalleryClick);
 
 function createGalleryListHTML(galleryItems) {
   return galleryItems
